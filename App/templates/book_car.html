@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Car</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Book Car</h1>
+
+        <form method="post" action="/book_car">
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col">
+                        <input type="text" class="form-control" name="customer_id" value="{{ customer[0] }}" placeholder="Customer ID">
+                    </div>
+                    <div class="col">
+                        <input type="date" class="form-control" name="start_date" value="{{ customer[1] }}" placeholder="Start Date">
+                    </div>
+                    <div class="col">
+                        <select class="form-control" name="rental_type">
+                            <option value="{{ customer[2] }}" selected>{{ customer[2] }}</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="daily">Daily</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <input type="number" class="form-control" name="rental_duration" value="{{ customer[3] }}" placeholder="Rental Duration">
+                    </div>
+                </div>
+                <br>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Model</th>
+                            <th>Year</th>
+                            <th>Color</th>
+                            <th>Type</th>
+                            <th>Category</th>
+                            <th>Daily Rate</th>
+                            <th>Weekly Rate</th>
+                            <th>Select</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for car in cars %}
+                            <tr>
+                                <td>{{ car[0] }}</td>
+                                <td>{{ car[1] }}</td>
+                                <td>{{ car[2] }}</td>
+                                <td>{{ car[3] }}</td>
+                                <td>{{ car[4] }}</td>
+                                <td>{{ car[5] }}</td>
+                                <td>{{ car[6] }}</td>
+                                <td>{{ car[7] }}</td>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="car_id" id="car_{{ car[0] }}" value="{{ car[0] }}">
+                                        <label class="form-check-label" for="car{{ car[0] }}">Select</label>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <button type="submit" class="btn btn-primary">Book Car</button>
+                <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </body>
+</html>

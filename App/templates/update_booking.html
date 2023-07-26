@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Return Car</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Current Bookings</h1>
+
+    <form method="post" action="/process_payment">
+          <div class="form-group">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Rental ID</th>
+                  <th>Customer ID</th>
+                  <th>Vehicle ID</th>
+                  <th>Rental Type</th>
+                  <th>Location</th>
+                  <th>Start Date</th>
+                  <th>Duration</th>
+                  <th>Payment Due</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for rent in rental %}
+                  <tr>
+                      <td>{{ rent[0] }}</td>
+                      <td>{{ rent[1] }}</td>
+                      <td>{{ rent[2] }}</td>
+                      <td>{{ rent[3] }}</td>
+                      <td>{{ rent[4] }}</td>
+                      <td>{{ rent[5] }}</td>
+                      <td>{{ rent[6] }}</td>
+                      <td>{{ rent[7] }}</td>
+                    <td>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rent_id" id="rent_{{ rent[0] }}" value="{{ rent[0] }}">
+                        <label class="form-check-label" for="rent_{{ rent[1] }}">Select</label>
+                      </div>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+            <button type="submit" class="btn btn-primary">Make Payment</button>
+            <a href="{{ url_for('index') }}" class="btn btn-secondary">cancel</a>
+
+      </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rental List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="list-unstyled">
+                {% for message in messages %}
+                <li class="alert alert-danger">{{ message }}</li>
+                {% endfor %}
+                </ul>
+        {% endif %}
+        {% endwith %}
+        <h1>Rental List</h1>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Rental ID</th>
+                    <th>Customer ID</th>
+                    <th>Vehicle ID</th>
+                    <th>Type</th>
+                    <th>Location</th>
+                    <th>Start Date</th>
+                    <th>No. of Weeks/Days</th>
+                    <th>Payment Due</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rental in rentals %}
+                <tr>
+                    <td>{{ rental[0] }}</td>
+                    <td>{{ rental[1] }}</td>
+                    <td>{{ rental[2] }}</td>
+                    <td>{{ rental[3] }}</td>
+                    <td>{{ rental[4] }}</td>
+                    <td>{{ rental[5] }}</td>
+                    <td>{{ rental[6] }}</td>
+                    <td>${{ rental[7] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('index') }}" class="btn btn-secondary">Back</a>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

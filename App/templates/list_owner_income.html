@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Owner Income</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+  {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+    {% endif %}
+    {% endwith %}
+	<div class="container">
+		<h1 class="mt-5 mb-4">Owner Income</h1>
+
+		<form method="post" action="/process_payment">
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<thead class="thead-light">
+						<tr>
+							<th>Owner Name</th>
+							<th>Car Type</th>
+							<th>Car Category</th>
+							<th>Num Cars</th>
+							<th>Weekly Earnings</th>
+							<th>Earning per Car</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for income in incomes %}
+						<tr>
+							<td>{{ income[0] }}</td>
+							<td>{{ income[1] }}</td>
+							<td>{{ income[2] }}</td>
+							<td>{{ income[3] }}</td>
+							<td>${{ income[4] }}</td>
+							<td>${{ income[5] }}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+			<a href="{{ url_for('index') }}" class="btn btn-secondary">Back</a>
+		</form>
+	</div>
+	<!-- Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
